@@ -100,7 +100,7 @@ function CollegeSystemSlider({
         className={`custom-offcanvas ${show ? "show" : ""}`}
       >
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>College Menu</Offcanvas.Title>
+          <Offcanvas.Title>MKICS</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           <Nav className="flex-column">

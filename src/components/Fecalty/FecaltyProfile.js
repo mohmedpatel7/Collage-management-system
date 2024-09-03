@@ -73,7 +73,7 @@ export default function Profile({
       </Modal.Header>
       <Modal.Body>
         <p>
-          <strong>fecalty Id:</strong> {fecalty.Fid}
+          <strong>Fecalty Id:</strong> {fecalty.Fid}
         </p>
         <p>
           <strong>Name:</strong> {fecalty.name}

@@ -107,7 +107,7 @@ export default function Createstudent({ showAlert }) {
                 onChange={handleChange}
               />
             </div>
-            <div className="mb-3">
+            <div className="mb-3 position-relative">
               <label htmlFor="password" className="form-label">
                 Password
               </label>
@@ -123,8 +123,8 @@ export default function Createstudent({ showAlert }) {
               <span
                 className="position-absolute"
                 style={{
-                  top: "83%",
-                  right: "35px",
+                  top: "70%",
+                  right: "10px",
                   transform: "translateY(-50%)",
                   cursor: "pointer",
                 }}
