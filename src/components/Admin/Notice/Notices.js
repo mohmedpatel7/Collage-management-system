@@ -118,68 +118,69 @@ export default function Notices({ showAlert }) {
 
   useEffect(() => {
     fetch_notices();
-  }, [fetch_notices]);
+  }, []);
 
   return (
     <>
-      <h2 className="text-center my-1">
+      <h2 className="text-center my-4">
         <u>NOTICES</u>
       </h2>
-      {notices.length > 0 ? (
-        notices.map((notice, index) => (
-          <div
-            className="container d-flex justify-content-center my-5"
-            key={index}
-          >
-            <div className="col-md-8">
-              <div className="card card-notice">
-                <div className="card-header">{notice.title}</div>
-                <div className="card-body">
-                  <div className="card-text">{notice.description}</div>
-                  {notice.file && (
-                    <div className="card-text my-2">
-                      <Link to={notice.file} rel="noopener noreferrer">
-                        <i className="fa fa-file" aria-hidden="true" />
-                      </Link>
-                    </div>
-                  )}
-                  <div className="card-text text-end">
+      <div className="container">
+        {notices.length > 0 ? (
+          <div className="row">
+            {notices.map((notice, index) => (
+              <div
+                className="col-12 col-md-6 col-lg-6 my-3 d-flex justify-content-center"
+                key={index}
+              >
+                <div className="card card-notice w-100">
+                  <div className="card-header text-center">{notice.title}</div>
+                  <div className="card-body">
+                    <div className="card-text">{notice.description}</div>
                     {notice.file && (
+                      <div className="card-text my-2">
+                        <Link to={notice.file} rel="noopener noreferrer">
+                          <i className="fa fa-file" aria-hidden="true" />
+                        </Link>
+                      </div>
+                    )}
+                    <div className="card-text text-end">
+                      {notice.file && (
+                        <i
+                          className="fa-solid fa-arrow-down mx-4"
+                          onClick={() => {
+                            download_notice(notice._id, notice.file);
+                          }}
+                        />
+                      )}
                       <i
-                        className="fa-solid fa-arrow-down mx-4"
+                        className="fa fa-trash"
                         onClick={() => {
-                          download_notice(notice._id);
+                          const val = window.confirm("Are you sure?");
+                          if (val) {
+                            delete_notice(notice._id);
+                          }
                         }}
                       />
-                    )}
-                    <i
-                      className="fa fa-trash"
-                      onClick={() => {
-                        const val = window.confirm("Are you sure.");
-                        if (val) {
-                          delete_notice(notice._id);
-                          showAlert("Notice Deleted.");
-                        } else {
-                          return;
-                        }
-                      }}
-                    />
-                  </div>
-                  <div className="card-footer text-muted text-end">
-                    <strong>
-                      {new Date(notice.date).toLocaleDateString()}
-                    </strong>
+                    </div>
+                    <div className="card-footer text-muted text-end">
+                      <strong>
+                        {new Date(notice.date).toLocaleDateString()}
+                      </strong>
+                    </div>
                   </div>
                 </div>
               </div>
+            ))}
+          </div>
+        ) : (
+          <div className="row my-5">
+            <div className="col text-center">
+              <h3>No notices available..</h3>
             </div>
           </div>
-        ))
-      ) : (
-        <div className="container my-5">
-          <h3>No notices available..</h3>
-        </div>
-      )}
+        )}
+      </div>
     </>
   );
 }
